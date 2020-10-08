@@ -8,12 +8,17 @@ public class UserInput {
     static final UserInput userInput = new UserInput();
 
     public void makeTry() {
-        userInput.getUserInput("нажмите клавишу Enter");
+        userInput.getUserInput("нажмите Enter");
     }
 
     public String userTeamName(int numOfTeam) {
         return userInput.getUserInput("Введите название " + numOfTeam + "-й команды: ");
     }
+
+    public String userTeamName() {
+        return userInput.getUserInput("Введите название ранее загруженной в базу данных команды: ");
+    }
+
 
     public String userPlayerName(int numOfPlayer) {
         return userInput.getUserInput("Введите имя " + numOfPlayer + "-го игрока");
@@ -21,6 +26,18 @@ public class UserInput {
 
     public double userSkills(String skill, int numOfPlayer) {
         return Double.parseDouble(userInput.getUserInput("Введите скил " + skill + " " + numOfPlayer + "-го игрока в формате от 0 до 1 (х.хх): "));
+    }
+
+    public String creationMethod(String subject) {
+        return userInput.getUserInput("Желаете автоматического создания" + subject + "? Введите 'y' или 'n' и нажмите Enter:");
+    }
+
+    public Boolean askForSave() {
+        if (userInput.getUserInput("Желаете сохранить созданную команду? Введите 'y' или 'n' и нажмите Enter:").equals("y")) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public String getUserInput(String prompt) {

@@ -3,7 +3,6 @@ package volley;
 class Player {
     private double serveSkill;
     private double attackSkill;
-    private double defenceSkill;
     private String playerName;
 
     public void setPlayerName(String gotUserName) {
