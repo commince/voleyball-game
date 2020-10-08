@@ -61,11 +61,11 @@ class Rules { //Отвечает за правила игры
     public void countScore() {
         if (whoServes == ServeOrder.TEAM1_SERVES) {
             team1Point++;
-            System.out.println("Счет: " + team1Point + ":" + team2Point);
         } else {
             team2Point++;
-            System.out.println("Счет: " + team2Point + ":" + team1Point);
         }
+        System.out.println(" ");
+        System.out.println("Счет: " + team1Point + ":" + team2Point);
         System.out.println(" ");
     }
 }

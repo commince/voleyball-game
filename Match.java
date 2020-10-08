@@ -1,13 +1,18 @@
 package volley;
 
+import static volley.UserInput.userInput;
+
 class Match { //Отвечает за последовательность и наполнение событий матча
-    private static Match match = new Match();
+    private static final Match match = new Match();
 
     static GameActions actions = new GameActions();
-    static Team team1;
-    static Team team2;
-    static int team1Point;
-    static int team2Point;
+    static Team team1,
+                team2;
+
+    static int team1Point,
+               team2Point;
+
+    private TeamBuilder teamBuilder;
 
     private Match() { }
 
@@ -22,18 +27,31 @@ class Match { //Отвечает за последовательность и н
     }
 
     private void startMatch() {
-        System.out.println("Приветствуем на молдавских играх! Сегодня нам предстоит лицезреть очень жаркий волейбольный матч!");
+        System.out.println("Приветствуем на олимпийских играх! Сегодня нам предстоит лицезреть очень жаркий волейбольный матч!");
 
-        team1 = new Team();
-        team1.createTeam(1);
-        System.out.println("");
-
-        team2 = new Team();
-        team2.createTeam(2);
-        System.out.println("");
+        createTeams();
 
         System.out.println("Встречаются команды: " + team1.getTeamName() + " и " + team2.getTeamName());
         System.out.println("");
+    }
+
+    private void createTeams() {
+        team1 = createATeam();
+        if(userInput.askForSave() && teamBuilder instanceof ManualTeamBuilder) new DBTeamSaver().saveTeam(team1);
+        System.out.println("");
+
+        team2 = createATeam();
+        while (team2.getTeamName().equals(team1.getTeamName())) {
+            System.out.println("Названия команд не могут быть одинаковыми, пересоздайте 2-ю команду.");
+            team2 = createATeam();
+        }
+        if(userInput.askForSave() && teamBuilder instanceof ManualTeamBuilder) new DBTeamSaver().saveTeam(team2);
+        System.out.println("");
+    }
+
+    private Team createATeam() {
+        teamBuilder = userInput.creationMethod(" команды").equals("y") ? new DBTeamBuilder() : new ManualTeamBuilder();
+        return teamBuilder.createTeam();
     }
 
     private void gameAction() {
