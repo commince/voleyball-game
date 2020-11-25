@@ -51,7 +51,7 @@ public class DBQueries {
             throw connectionTrouble;
         } finally {
             if (!(connectionTrouble == null)) {
-                conn.close();
+                if (conn != null) conn.close();
             }
         }
     }
