@@ -1,7 +1,7 @@
 package kryaskov.app.game;
 
-import static kryaskov.app.game.Match.team2;
-import static kryaskov.app.game.Match.team1;
+import static kryaskov.app.game.WebMatch.team2;
+import static kryaskov.app.game.WebMatch.team1;
 
 public class ActionEnums {
     enum ServeOrder {

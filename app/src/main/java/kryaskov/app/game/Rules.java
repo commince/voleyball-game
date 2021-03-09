@@ -1,29 +1,29 @@
 package kryaskov.app.game;
 
-import static kryaskov.app.game.Match.*;
+import static kryaskov.app.game.WebMatch.*;
 
 
 class Rules { //Отвечает за правила игры
 
     public void rallyResult(String typeOfServe) {
         if (typeOfServe.equals("Эйс")) {
-            System.out.println("С приемом беда, это ээээээйс!");
+            WebMatch.addLog("<p>Oh my Goodness! What a power! Aaaaace!</p>");
             countScore();
         }
         if (typeOfServe.equals("Подача в сеть")) {
-            System.out.println("Кажется, у кого-то упадок сил, мяч не долетел до противоположной половины площадки и угодил в сеть");
+            WebMatch.addLog("<p>Seems like the player hasn't ate before the match. The ball is in the net.</p>");
             ActionEnums.whoServes = ActionEnums.whoServes.opposite();
             ActionEnums.whoServes.getServingTeam().positioningChange();
             countScore();
         }
         if (typeOfServe.equals("Аут")) {
-            System.out.println("У подающего слегка сбит прицел, мяч в ауте");
+            WebMatch.addLog("<p>The server is slightly out of sight.. it is out</p>");
             ActionEnums.whoServes = ActionEnums.whoServes.opposite();
             ActionEnums.whoServes.getServingTeam().positioningChange();
             countScore();
         }
         if (typeOfServe.equals("Мяч принят")) {
-            System.out.println("Отличный прием, посмотрим, удастся ли реализовать атаку..");
+            WebMatch.addLog("<p>Nice reception! Let's see how strong is their attack..</p>");
             ActionEnums.whoAttacks = ActionEnums.whoServes == ActionEnums.ServeOrder.TEAM1_SERVES ? ActionEnums.AttackOrder.TEAM2_ATTACKS : ActionEnums.AttackOrder.TEAM1_ATTACKS;
             attackResult(actions.makeAttack());
         }
@@ -31,27 +31,27 @@ class Rules { //Отвечает за правила игры
 
     public void attackResult(String typeOfAttack) {
         if (typeOfAttack.equals("Удар в аут")) {
-            System.out.println("Нападающий испугался блока, пробил мимо него... но и мимо площадки.. мяч в ауте");
+            WebMatch.addLog("<p>The spiker is scared of block. He hits beside the blockers ... but beside the court as well.. the ball is out</p>");
             ActionEnums.whoServes.afterNegativeAttack();
             countScore();
         }
         if (typeOfAttack.equals("Блок")) {
-            System.out.println("Блокирующие установили стену");
+            WebMatch.addLog("<p>The attack is never gonna pass when the block looks like a wall.</p>");
             ActionEnums.whoServes.afterNegativeAttack();
             countScore();
         }
         if (typeOfAttack.equals("Защита тащит")) {
-            System.out.println("Защита сработала на ура, посмотрим на ответную атаку..");
+            WebMatch.addLog("<p>Great defence! How will they organize the retaliatory attack..</p>");
             ActionEnums.whoAttacks = ActionEnums.whoAttacks.opposite();
             attackResult(actions.makeAttack());
         }
         if (typeOfAttack.equals("Блок-аут")) {
-            System.out.println("Блокирующие хороши, но такого хитрого лиса попробуй останови - отыгрался от блока как семачку скушал");
+            WebMatch.addLog("<p>The block was good enough but it couldn't stop such a sly fox. Block-out.</p>");
             ActionEnums.whoServes.afterPositiveAttack();
             countScore();
         }
         if (typeOfAttack.equals("3 метра")) {
-            System.out.println("Баааауууу! Мощный удар в 3-й метр.. мяч где-то под потолком");
+            WebMatch.addLog("<p>What a monster attack! A powerful 3rd-meter spike.. and the ball is somewhere under the hall vaults.</p>");
             ActionEnums.whoServes.afterPositiveAttack();
             countScore();
         }
@@ -63,8 +63,8 @@ class Rules { //Отвечает за правила игры
         } else {
             team2Point++;
         }
-        System.out.println(" ");
-        System.out.println("Счет: " + team1Point + ":" + team2Point);
-        System.out.println(" ");
+        WebMatch.addLog("<br/>");
+        WebMatch.addLog("<p> The score is " + team1Point + ":" + team2Point + "</p>");
+        WebMatch.addLog("<br/>");
     }
 }

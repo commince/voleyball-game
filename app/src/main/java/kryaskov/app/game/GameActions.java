@@ -2,7 +2,7 @@ package kryaskov.app.game;
 
 import static kryaskov.app.game.ActionEnums.*;
 import static kryaskov.app.game.UserInput.userInput;
-import static kryaskov.app.game.Match.*;
+import static kryaskov.app.game.WebMatch.*;
 
 public class GameActions {
 
@@ -10,15 +10,16 @@ public class GameActions {
         if (team1Point == 0 && team2Point == 0) serveLot(); //Выбор первого подающего по жребию
 
         if (whoServes == ActionEnums.ServeOrder.TEAM1_SERVES) {
-            System.out.println("Подает " + team1.getTeamSquad().get(0).getPlayerName() + " из команды " + team1.getTeamName());
+            WebMatch.addLog("<p style=\"color: blue\">" + team1.getTeamSquad().get(0).getPlayerName() + " from " + team1.getTeamName() + " is on the serve</p>");
         } else {
-            System.out.println("Подает " + team2.getTeamSquad().get(0).getPlayerName() + " из команды " + team2.getTeamName());
+            WebMatch.addLog("<p style=\"color: blue\">" + team2.getTeamSquad().get(0).getPlayerName() + " from " + team2.getTeamName() + " is on the serve</p>");
         }
 
         String[] serveType = {"Подача в сеть", "Аут", "Мяч принят", "Эйс"};
-        System.out.print("Для подачи ");
 
-        userInput.makeTry(); //Вовлечение юзера в игровой процесс :)
+//        System.out.print("Для подачи ");
+//        userInput.makeTry(); //Вовлечение юзера в игровой процесс :)
+
         int index;
         if (whoServes == ActionEnums.ServeOrder.TEAM1_SERVES) { //Чем выше скил подающего, тем больше вероятность подачи (на эйс способны игроки со скилом подачи более 0,5)
             index = (int) Math.round(Math.round(Math.random()*(serveType.length-2)) + team1.getTeamSquad().get(0).getServeSkill());
@@ -41,8 +42,8 @@ public class GameActions {
     public String makeAttack() {
         String[] attackType = {"Удар в аут", "Блок", "Защита тащит", "Блок-аут", "3 метра"};
 
-        System.out.print("Для атаки ");
-        userInput.makeTry(); //Вовлечение юзера в игровой процесс :)
+//        System.out.print("Для атаки ");
+//        userInput.makeTry(); //Вовлечение юзера в игровой процесс :)
 
         int index;
         if (whoAttacks == ActionEnums.AttackOrder.TEAM1_ATTACKS) { //Формула позволяет реализовать логику "чем выше разница скилов атакующего и блокирующих (усредненный скил троих блокирующих), тем выше вероятность реализации атаки"

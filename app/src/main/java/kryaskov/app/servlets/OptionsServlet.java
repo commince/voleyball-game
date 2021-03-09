@@ -14,6 +14,8 @@ public class OptionsServlet extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter printWriter = response.getWriter();
 
+        printWriter.write("<h3 style=\"color: cadetblue\">Choose the way of team creation</h3>" + "<br/>");
+
         printWriter.write("<form action = \"distributor\" method = \"POST\" >\n" +
                 "<input type = \"checkbox\" name = \"automatic\" checked = \"checked\" /> Automatic team creation\n" +
                 "<input type = \"submit\" value = \"Continue\" />");

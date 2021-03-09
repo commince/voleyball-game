@@ -21,7 +21,9 @@ public class GreetingServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         response.setStatus(HttpServletResponse.SC_OK);
         PrintWriter printWriter = response.getWriter();
-        printWriter.write("<p>Hello!</p>" + "<a href='options'>Press here to launch the best Volleyball Simulator</a>");
+        printWriter.write("<h2 style=\"color: blue\">Welcome to the best volleyball simulator!</h2>" +
+                "<br/>" +
+                "<p>Press <a href='options'>here</a> to launch the game");
         printWriter.close();
 
     }

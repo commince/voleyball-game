@@ -2,6 +2,8 @@ package kryaskov.app.game;
 import java.sql.*;
 import java.util.ArrayList;
 
+import static kryaskov.app.game.Match.team1;
+
 public class DBTeamBuilder extends TeamBuilder {
     private Team team;
 
@@ -14,6 +16,22 @@ public class DBTeamBuilder extends TeamBuilder {
             team.setTeamName(extractTeamName());
         }
         createTeamSquad();
+        return team;
+    }
+
+    public Team createTeamForWeb() {
+        team = new Team();
+        team.setTeamName(extractTeamName());
+        createTeamSquad();
+        System.out.println(team.getTeamSquad().get(0).getPlayerName());
+        return team;
+    }
+
+    public Team createTeamForWeb(String userTeamName) {
+        team = new Team();
+        team.setTeamName(userTeamName);
+        createTeamSquad();
+        System.out.println(team.getTeamSquad().get(0).getPlayerName());
         return team;
     }
 

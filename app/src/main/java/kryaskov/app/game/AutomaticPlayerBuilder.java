@@ -13,7 +13,9 @@ public class AutomaticPlayerBuilder extends PlayerBuilder {
     }
 
     private String playerNaming() {
-        String[] names = {"Путин", "Лавров", "Шойгу", "Собянин", "Лукашенко", "Мутко", "Меркель", "Макрон", "Трамп", "Клинтон", "Обама", "Порошенко"};
+        if (index == 12) index = 0;
+        String[] names = {"F. Kirkorov", "A. Einstein", "N. Tesla", "J. Belushi", "A.S. Pushkin", "A. Schwarzenegger",
+                    "Peter I", "V. Tsoy", "Papa Karlo", "Kolobok", "Batman", "Lomonosov"};
         return names[index++];
     }
 }

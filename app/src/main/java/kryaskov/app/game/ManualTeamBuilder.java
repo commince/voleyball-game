@@ -2,7 +2,7 @@ package kryaskov.app.game;
 import java.util.ArrayList;
 
 public class ManualTeamBuilder extends TeamBuilder {
-    private Team team;
+    private Team team = null;
 
     private PlayerBuilder builder;
 
@@ -16,8 +16,22 @@ public class ManualTeamBuilder extends TeamBuilder {
         return team;
     }
 
-    public void createTeamSquad() {
-        builder = UserInput.userInput.creationMethod(" игроков").equals("y") ? new AutomaticPlayerBuilder() : new ManualPlayerBuilder();
+    @Override
+    public Team createTeamForWeb(String userTeamName) {
+        team = new Team();
+        team.setTeamName(userTeamName);
+        createTeamSquad();
+        return team;
+    }
+
+    @Override
+    public Team createTeamForWeb() {
+        return team;
+    }
+
+
+    private void createTeamSquad() {
+        builder = new AutomaticPlayerBuilder();
         team.teamSquad = new ArrayList<>();
 
         for (int i = 0; i < 6; i++) {
