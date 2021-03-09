@@ -29,13 +29,18 @@ public class AutomaticTeamServlet extends HttpServlet {
 
                 "<input type=\"hidden\" name=\"method\" value=\"automatic\"/>" +
 
-                "1st team name: <input type = \"text\" name = \"team1Name\" />\n" + "<p/>" +
-                "2nd team name: <input type = \"text\" name = \"team2Name\" />\n" + "<p/>" +
+                "<input type = \"submit\" value = \"Play\" />" +
+                "<hr>" +
+                "<br>" +
 
                 "<input type = \"checkbox\" name = \"useInputName\" /> Use defined names*\n" +
                 "<br>" +
-                "<h5 style=\"color: red\">*ensure that you have entered the right names of created in past teams</h5>" +
-                "<hr>" +
-                "<input type = \"submit\" value = \"Play\" />");
+                "<br>" +
+
+                "1st team name: <input type = \"text\" name = \"team1Name\" />\n" + "<p/>" +
+                "2nd team name: <input type = \"text\" name = \"team2Name\" />\n" + "<p/>" +
+
+                "<h5 style=\"color: red\">*ensure that you have entered the right names of created in past teams</h5>"
+        );
     }
 }
